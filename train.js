@@ -1,4 +1,5 @@
-// lesson No21, Call back funcs.
+// lesson No21, Call back functions.
+
 console.log("Jack Ma maslahatlari");
 const list = [
   "yaxshi talaba bo'ling", // 0-20
@@ -10,7 +11,7 @@ const list = [
 ];
 
 
-// callback func example
+// callback function example
 
 /* 
 function maslahatBering(a, callBack) {
