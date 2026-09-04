@@ -1,39 +1,118 @@
-console.log("Web serverni boshlash !");
-const { clear } = require("console");
+console.log("Web Serverni boshlash");
 const express = require("express");
 const app = express();
 
+const fs = require("fs");
+require("dotenv").config();
+const { MongoClient } = require("mongodb");
 
-//MongoDB choqirish
-const db = require("./server").db();
-
-//1 Kirish code
+const client = new MongoClient(process.env.MONGODB_URI);
+let db;
+async function run() {
+  await client.connect();
+  db = client.db("reja1");
+  console.log("MongoDB'ga muvaffaqiyatli ulandi!");
+}
+run()
+  .then(() => {
+    console.log("DB tayyor, endi so'rovlarni qabul qilishi mumkin");
+  })
+  .catch((err) => {
+    console.log("MongoDB ulanishida xato:", err);
+  });
+let user;
+fs.readFile("database/user.json", "utf8", (err, data) => {
+  if (err) {
+    console.log("ERROR:", err);
+  } else {
+    user = JSON.parse(data);
+  }
+});
+// 1 Kirish kodlari
 app.use(express.static("public"));
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
+// 2: Session code
 
-
-//2. Sessions:
-
-//3. Views code.  BSSR(backendda frontend yasash)
+// 3 views code
 app.set("views", "views");
 app.set("view engine", "ejs");
 
-//4. Routing code
-// app.get("/hello", function(req, res) {
-//     res.end(`<h1 style="background: green">Hello world by Mike</h1>`);
-// }) ;
-
-// app.get("/gift", function(req, res) {
-//     res.end(`<h1 style="background: grey">You are at gifts page !</h1>`);
-// }) ;
-app.post("/create-item", (req, res) => {
-  console.log(req.body);
-  res.json({ test: "success" });
+// 4 routing code
+app.post("/create-item", async (req, res) => {
+  try {
+    console.log(req.body);
+    const result = await db.collection("items").insertOne(req.body);
+    res.send("successfully added");
+  } catch (err) {
+    console.log("ERROR:", err);
+    res.status(500).json({ message: "Error occurred", error: err.message });
+  }
 });
-app.get(`/`, function (req, res) {
-  res.render("reja");
+app.get(`/author`, (req, res) => {
+  res.render("author", { user: user });
 });
-
-
+app.get("/", async (req, res) => {
+  try {
+    if (!db) {
+      return res
+        .status(503)
+        .json({
+          message:
+            "Server hali tayyor emas, birozdan keyin qayta urinib ko'ring",
+        });
+    }
+    const items = await db.collection("items").find().toArray();
+    console.log(items);
+    res.render("reja1", { items: items });
+  } catch (err) {
+    console.log("ERROR:", err);
+    res.status(500).json({ message: "Error occurred", error: err.message });
+  }
+});
 module.exports = app;
+
+
+
+
+// Bu birinchi qilgan ishim ammo xatolik ketdi va bu yerdagi xatoliklarni ko'rib chiqish uchun.
+
+// console.log("Web serverni boshlash !");
+// const { clear } = require("console");
+// const express = require("express");
+// const app = express();
+
+
+// //MongoDB choqirish
+// const db = require("./server").db();
+
+// //1 Kirish code
+// app.use(express.static("public"));
+// app.use(express.json());
+// app.use(express.urlencoded({extended: true}));
+
+
+// //2. Sessions:
+
+// //3. Views code.  BSSR(backendda frontend yasash)
+// app.set("views", "views");
+// app.set("view engine", "ejs");
+
+// //4. Routing code
+// // app.get("/hello", function(req, res) {
+// //     res.end(`<h1 style="background: green">Hello world by Mike</h1>`);
+// // }) ;
+
+// // app.get("/gift", function(req, res) {
+// //     res.end(`<h1 style="background: grey">You are at gifts page !</h1>`);
+// // }) ;
+// app.post("/create-item", (req, res) => {
+//   console.log(req.body);
+//   res.json({ test: "success" });
+// });
+// app.get(`/`, function (req, res) {
+//   res.render("reja");
+// });
+
+
+// module.exports = app;

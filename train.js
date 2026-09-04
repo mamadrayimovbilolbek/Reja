@@ -1,6 +1,8 @@
-// lesson No21, Call back functions.
-
+// B- task
+// A- TASK
+console.log(`train task ishga tushdi`);
 console.log("Jack Ma maslahatlari");
+
 const list = [
   "yaxshi talaba bo'ling", // 0-20
   "to'g'ri boshliq tanlang va ko'proq o'rganing", // 20-30
