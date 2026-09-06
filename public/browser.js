@@ -46,7 +46,7 @@ document.addEventListener("click", function (e) {
         axios
         .post("/delete-item", {id: e.target.getAttribute("data-id")}) 
         .then((respose) => {
-          console.log(response.data);
+          console.log(respose.data);
           e.target.parentElement.parentElement.remove();
         })
         .catch((err) => {
