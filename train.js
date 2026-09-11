@@ -1,10 +1,14 @@
+
+
+// F task
+
 function findDoublers(str) {
-  const seen = new Set();
+  const res = new Set();
   for (let char of str) {
-    if (seen.has(char)) {
+    if (res.has(char)) {
       return true;
     }
-    seen.add(char);
+    res.add(char);
   }
   return false;
 }
@@ -14,13 +18,6 @@ console.log(findDoublers("monday")); // false (barcha harflar noyob)
 
 
 
-
-
-
-
-
-// B- task
-// // A- TASK
 // console.log(`train task ishga tushdi`);
 // console.log("Jack Ma maslahatlari");
 
