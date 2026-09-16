@@ -1,7 +1,32 @@
 
 
-// F task
+function getReverse(str) {
+  return str.split("").reverse().join("");
+}
 
+console.log(getReverse("uzbekistan"));
+console.log(getReverse("vatanim"));
+
+
+
+
+// function findDoubler(str) {
+//   const javob = new Set();
+//   for (let char of str) {
+//     if (res.has(char)) {
+//       return true;
+//     }
+//     res.add(char);
+//   }
+//   return false;
+// }
+
+// console.log(findDoublers("airport")); // true qaytadi, chunki bizda takrorlangan ikkta harf bor 'r'.
+// console.log(findDoublers("travel")); //  false qaytadi, sababi takrorlangan harf yo'q!
+
+
+// F task
+ 
 function findDoublers(str) {
   const res = new Set();
   for (let char of str) {
@@ -16,6 +41,7 @@ function findDoublers(str) {
 console.log(findDoublers("wednesday")); // true ("d" ikki marta takrorlangan)
 console.log(findDoublers("monday")); // false (barcha harflar noyob)
 
+// Men bu yerda nima bo'lganini qayta taxlil qilishim kerak
 
 
 // console.log(`train task ishga tushdi`);
@@ -29,6 +55,9 @@ console.log(findDoublers("monday")); // false (barcha harflar noyob)
 //   "yoshlarga investitsiya qilish", // 50 -60
 //   "dam oling, endi foydasi yo'q", // 60
 // ];
+
+
+// 
 
 
 // // callback function example
