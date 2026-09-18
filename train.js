@@ -1,9 +1,9 @@
 
-// 
+// H Task
 
 
 
-// D -Task
+// G -Task
 
 // // Function Declaration
 // let arr = [5, 27, 12, 27, 8];
