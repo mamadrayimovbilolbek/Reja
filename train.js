@@ -1,5 +1,22 @@
 
-// H Task
+// H task
+
+let first01 = [1, -4, 2, 0, -1, 3];
+const second02 = [-4, 2, -6, 5];
+
+
+function getPositive(arr){
+    let new_arr = [];
+    for (let i = 0; i < arr.length; i++){
+        if (arr[i] > 0) {
+            new_arr.push(arr[i]);
+        }
+    }
+    return new_arr.join("");
+}
+
+console.log(getPositive(first01));
+console.log(getPositive(second02));
 
 
 
