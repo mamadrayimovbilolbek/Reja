@@ -1,14 +1,46 @@
 
-
-function getReverse(str) {
-  return str.split("").reverse().join("");
-}
-
-console.log(getReverse("uzbekistan"));
-console.log(getReverse("vatanim"));
+// 
 
 
 
+// D -Task
+
+// // Function Declaration
+// let arr = [5, 27, 12, 27, 8];
+
+// function getHighestIndex(arr){
+//     const str = String(Math.max(...arr));
+//     return str[1];
+// }
+
+
+// // Function Declaration
+// function getHighestIndex1(arr){
+//   const arr1 = arr.sort((a, b) => b - a);
+//   let str = String(arr1[0]);
+//   return str[1];
+// }
+
+// // testing
+// console.log(getHighestIndex(arr))
+// console.log(getHighestIndex1(arr));
+
+
+// E Task
+
+// function getReverse(str) {
+//   return str.split("").reverse().join("");
+// }
+
+// console.log(getReverse("uzbekistan"));
+// console.log(getReverse("vatanim"));
+// console.log(getReverse("korea"));
+// console.log(getReverse("osiyo"));
+
+
+
+// F task
+ 
 
 // function findDoubler(str) {
 //   const javob = new Set();
@@ -25,8 +57,6 @@ console.log(getReverse("vatanim"));
 // console.log(findDoublers("travel")); //  false qaytadi, sababi takrorlangan harf yo'q!
 
 
-// F task
- 
 function findDoublers(str) {
   const res = new Set();
   for (let char of str) {
