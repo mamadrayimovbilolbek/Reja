@@ -1,22 +1,56 @@
 
-// H task
 
-let first01 = [1, -4, 2, 0, -1, 3];
-const second02 = [-4, 2, -6, 5];
+// I task =========
 
+const numbersList = [1, 9, 3, 4, 5, 9, 3, 9];
 
-function getPositive(arr){
-    let new_arr = [];
-    for (let i = 0; i < arr.length; i++){
-        if (arr[i] > 0) {
-            new_arr.push(arr[i]);
-        }
+// Function definition
+function findMostFrequent(list) {
+  let frequencyMap = {};
+  let maxCount = 0;
+  let mostFrequentNumber = null;
+
+  // for loop 
+  for (let i = 0; i < list.length; i++) {
+    let currentNumber = list[i];
+
+    if (frequencyMap[currentNumber] === undefined) {
+      frequencyMap[currentNumber] = 1;
+    } else {
+      frequencyMap[currentNumber]++;
     }
-    return new_arr.join("");
+
+    if (frequencyMap[currentNumber] > maxCount) {
+      maxCount = frequencyMap[currentNumber];
+      mostFrequentNumber = currentNumber;
+    }
+  }
+
+  return mostFrequentNumber;
 }
 
-console.log(getPositive(first01));
-console.log(getPositive(second02));
+// Testing
+console.log(findMostFrequent(numbersList)); // 4
+
+
+// // H task
+
+// let first01 = [1, -4, 2, 0, -1, 3];
+// const second02 = [-4, 2, -6, 5];
+
+
+// function getPositive(arr){
+//     let new_arr = [];
+//     for (let i = 0; i < arr.length; i++){
+//         if (arr[i] > 0) {
+//             new_arr.push(arr[i]);
+//         }
+//     }
+//     return new_arr.join("");
+// }
+
+// console.log(getPositive(first01));
+// console.log(getPositive(second02));
 
 
 
